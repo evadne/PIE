@@ -43,11 +43,21 @@ PIE.BorderImageRenderer = PIE.RendererBase.newRenderer( {
 
                 // Piece positions and sizes
                 function setSizeAndPos( piece, w, h, x, y ) {
-                    var s = pieces[piece].style;
-                    s.width = w;
-                    s.height = h;
-                    s.left = x;
-                    s.top = y;
+                
+                    try {
+                
+                        var s = pieces[piece].style;
+                        s.width = w;
+                        s.height = h;
+                        s.left = x;
+                        s.top = y;
+                    
+                    } catch (error) {
+                    
+                        //  Does nothing
+                    
+                    }
+                    
                 }
                 setSizeAndPos( 'tl', widthL, widthT, 0, 0 );
                 setSizeAndPos( 't', elW - widthL - widthR, widthT, widthL, 0 );
