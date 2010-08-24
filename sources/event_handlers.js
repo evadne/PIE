@@ -25,21 +25,32 @@ function update() {
             w = rect.right - x,
             h = rect.bottom - y,
             i, len;
-
-        if( x !== lastX || y !== lastY ) {
-            for( i = 0, len = renderers.length; i < len; i++ ) {
-                renderers[i].updatePos();
-            }
-            lastX = x;
-            lastY = y;
+            
+        try {
+        
+        	var renderersLength = renderers && renderers.length || 0;
+        
+	        if( x !== lastX || y !== lastY ) {
+	            for( i = 0, len = renderersLength; i < len; i++ ) {
+	                renderers[i].updatePos();
+	            }
+	            lastX = x;
+	            lastY = y;
+	        }
+	        if( w !== lastW || h !== lastH ) {
+	            for( i = 0, len = renderersLength; i < len; i++ ) {
+	                renderers[i].updateSize();
+	            }
+	            lastW = w;
+	            lastH = h;
+	        }
+        
+        } catch (error) {
+        
+        	//	Does nothing
+        
         }
-        if( w !== lastW || h !== lastH ) {
-            for( i = 0, len = renderers.length; i < len; i++ ) {
-                renderers[i].updateSize();
-            }
-            lastW = w;
-            lastH = h;
-        }
+        
     }
     else if( !initializing ) {
         init();
